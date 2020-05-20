@@ -1,18 +1,17 @@
-package controllers
+package v1
 
 import (
-	"bookstore/models"
+	"bookstore/dao"
+	"bookstore/model"
 
 	"github.com/gin-gonic/gin"
 )
 
-type UserController struct{}
-
 // operate signup
-func (ctrl *UserController) SignIn(c *gin.Context) {
-	var userinfo models.Users
+func SignIn(c *gin.Context) {
+	var userinfo model.Users
 	c.BindJSON(&userinfo)
-	result, err := models.CheckUserExist(userinfo.Username)
+	result, err := dao.CheckUserExist(userinfo.Username)
 	if err != nil {
 		c.JSON(200, gin.H{
 			"code":    "0",
@@ -35,19 +34,18 @@ func (ctrl *UserController) SignIn(c *gin.Context) {
 			})
 		}
 	}
-	return
 }
 
 // operate signup
-func (ctrl *UserController) SignUp(c *gin.Context) {
-	var registerInfo models.Users
-	c.BindJSON(&registerInfo)
+func SignUp(c *gin.Context) {
+	var registerInfo model.Users
+	c.Bind(&registerInfo)
 
-	err := models.UserRegister(&registerInfo)
+	err := dao.UserRegister(&registerInfo)
 	if err != nil {
 		c.JSON(200, gin.H{
 			"code":    "0",
-			"message": "用戶名已存在",
+			"message": registerInfo,
 			"success": false,
 		})
 	} else {
@@ -57,5 +55,4 @@ func (ctrl *UserController) SignUp(c *gin.Context) {
 			"success": true,
 		})
 	}
-	return
 }
