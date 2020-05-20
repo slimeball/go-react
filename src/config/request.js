@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export default async (type, url, data, headers) => {
   type = type.toLowerCase() || 'get';
-  url = env.baseUrl + url;
+  url = env.baseUrl + env.version + url;
   if (type === 'get') {
     return new Promise((resolve, reject) => {
       let params = { params: data }

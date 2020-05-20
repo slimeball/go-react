@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import "weui";
+import "../node_modules/weui/dist/style/weui.min.css"
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(

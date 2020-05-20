@@ -42,7 +42,7 @@ export default class SignUp extends React.Component {
       .then(res => res.json())
       .then(result => {
         if (result.success) {
-          alert(result.message)
+          this.showTip(result.message)
         } else {
           this.showTip(result.message)
         }

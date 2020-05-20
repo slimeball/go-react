@@ -1,0 +1,14 @@
+.book-list{
+  button{
+    cursor: pointer;
+  }
+  .tip{
+    color: #ff0000;
+  }
+  table{
+    th, td{
+      border: 1px solid #ccc;
+      padding: 5px 15px;
+    }
+  }
+}
