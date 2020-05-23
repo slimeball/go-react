@@ -1,30 +1,13 @@
-服務端agent
-後端服務組件開發
-
-技術棧
-kafka  數據解耦
-zookeeper
-ES和Kibana使用
-ercd
--------------------------
-> 日志系统
-问题排查，数据分析
-
-- elk方案
-问题：运维成本高，每增加一个日志收藏，都要手动配置，监控缺失，无法准确获取logstash状态，无法做定制化开发及维护
-
-- 
-log agent 日誌收集客戶端，收集服務器的日誌
-lafka 高吞吐量分佈式隊列
-ES - elasticsearch 開源搜索引擎
-hadoop 分佈式計算框架，大量數據進行分部署，小量數據用mysql足夠
-storm 實時計算框架，計算數據流
+> skills
+backend：go, gorm, gin, mysql
+frontend: react, redux, weui 
 
 -------------------------
 Go Api support 
 
 Sign up
 Sign in
+cookie session sign in authenticate
 
 add book
 book list
@@ -47,10 +30,17 @@ Day2. 1, Go SignUp Api. 2, react SignUp page. request validate and response data
 
 D3. Go add new book Api.react packge ajax func with axios,ajax reqst put in independent file, book list page, add book page.Go use gorm operate database should use Table func give specify table name,if not it will auto use struct name+s be table name to operate
 
+
+
+> 應用技術棧
+後端：go, gorm, gin, mysql
+前端: react, redux, weui 
+
 Go接口支持
 
 註冊
 登錄
+cookie session登錄控制
 
 添加圖書
 圖書列表
@@ -94,3 +84,35 @@ go分頁，默認頁碼為1，顯示條數為5，總頁碼通過數據庫計算�
 前端請求接口時，不足10條則全部顯示，超過5條則顯示頁碼及總頁碼，
 前端可以傳希望顯示的條數，go通過前端傳入的條數計算總頁碼，不傳則默認5條
 dao層 data access object
+
+第八天
+登錄session記錄
+
+
+
+
+---------------------------------
+* 信息記錄
+
+服務端agent
+後端服務組件開發
+
+技術棧
+kafka  數據解耦
+zookeeper
+ES和Kibana使用
+ercd
+
+> 日志系统
+问题排查，数据分析
+
+- elk方案
+问题：运维成本高，每增加一个日志收藏，都要手动配置，监控缺失，无法准确获取logstash状态，无法做定制化开发及维护
+
+- 
+log agent 日誌收集客戶端，收集服務器的日誌
+lafka 高吞吐量分佈式隊列
+ES - elasticsearch 開源搜索引擎
+hadoop 分佈式計算框架，大量數據進行分部署，小量數據用mysql足夠
+storm 實時計算框架，計算數據流
+

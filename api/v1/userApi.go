@@ -15,21 +15,21 @@ func SignIn(c *gin.Context) {
 	if err != nil {
 		c.JSON(200, gin.H{
 			"code":    "0",
-			"message": "用戶名不存在",
+			"message": "username doesn't exsit.",
 			"success": false,
 		})
 	} else {
 		if userinfo.Password == result.Password {
 			c.JSON(200, gin.H{
 				"code":     "1",
-				"message":  "登錄成功",
+				"message":  "sign in success.",
 				"userinfo": result,
 				"success":  true,
 			})
 		} else {
 			c.JSON(200, gin.H{
 				"code":    "0",
-				"message": "用戶名或密碼錯誤",
+				"message": "username or password incorrect.",
 				"success": false,
 			})
 		}
@@ -51,7 +51,7 @@ func SignUp(c *gin.Context) {
 	} else {
 		c.JSON(200, gin.H{
 			"code":    "1",
-			"message": "註冊成功",
+			"message": "sign up success.",
 			"success": true,
 		})
 	}

@@ -15,13 +15,13 @@ func AddBook(c *gin.Context) {
 	if err != nil {
 		c.JSON(200, gin.H{
 			"code":    "0",
-			"message": "添加失敗",
+			"message": "add failed.",
 			"success": false,
 		})
 	} else {
 		c.JSON(200, gin.H{
 			"code":    "0",
-			"message": "添加成功",
+			"message": "add success.",
 			"success": true,
 		})
 	}
@@ -31,18 +31,17 @@ func AddBook(c *gin.Context) {
 func GetBookById(c *gin.Context) {
 	var bookInfo model.Book
 	c.Bind(&bookInfo)
-	book, err := dao.GetBookByIdModel(bookInfo.Id)
+	book, err := dao.GetBookByIdDAO(bookInfo.Id)
 	if err != nil {
 		c.JSON(200, gin.H{
 			"code":    "0",
-			"message": "查找失敗",
-			"data":    book,
+			"message": "search failed.",
 			"success": false,
 		})
 	} else {
 		c.JSON(200, gin.H{
 			"code":    "0",
-			"message": "查找成功",
+			"message": "search success.",
 			"data":    book,
 			"success": true,
 		})
@@ -51,19 +50,20 @@ func GetBookById(c *gin.Context) {
 
 // receive book list
 func GetBookList(c *gin.Context) {
-	// var bookInfo model.Book
-	// c.BindJSON(&bookInfo)
-	list, err := dao.GetBookListModel()
+	var pageInfo model.Page
+	c.Bind(&pageInfo)
+
+	list, err := dao.GetBookListDAO(&pageInfo)
 	if err != nil {
 		c.JSON(200, gin.H{
 			"code":    "0",
-			"message": "添加失敗",
+			"message": "search failed.",
 			"success": false,
 		})
 	} else {
 		c.JSON(200, gin.H{
 			"code":    "0",
-			"message": "查詢成功",
+			"message": "search success.",
 			"data":    list,
 			"success": true,
 		})
@@ -74,17 +74,17 @@ func GetBookList(c *gin.Context) {
 func UpdateBook(c *gin.Context) {
 	var bookInfo model.Book
 	c.Bind(&bookInfo)
-	err := dao.UpdateBookModel(&bookInfo)
+	err := dao.UpdateBookDAO(&bookInfo)
 	if err != nil {
 		c.JSON(200, gin.H{
 			"code":    "0",
-			"message": "修改失敗",
+			"message": "update failed.",
 			"success": false,
 		})
 	} else {
 		c.JSON(200, gin.H{
 			"code":    "0",
-			"message": "修改成功",
+			"message": "update success.",
 			"data":    bookInfo,
 			"success": true,
 		})
@@ -95,17 +95,17 @@ func UpdateBook(c *gin.Context) {
 func DeleteBook(c *gin.Context) {
 	var bookInfo model.Book
 	c.Bind(&bookInfo)
-	err := dao.DeleteBookModel(&bookInfo)
+	err := dao.DeleteBookDAO(&bookInfo)
 	if err != nil {
 		c.JSON(200, gin.H{
 			"code":    "0",
-			"message": "刪除失敗",
+			"message": "delete failed.",
 			"success": false,
 		})
 	} else {
 		c.JSON(200, gin.H{
 			"code":    "0",
-			"message": "刪除成功",
+			"message": "delete success",
 			"success": true,
 		})
 	}
