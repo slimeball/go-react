@@ -6,7 +6,7 @@ export const addBookAjax = p => request('post', '/addbook', p)
 
 export const getBookbyIdAjax = p => request('get', '/getbookbyid', p)
 
-export const getBookListAjax = () => request('get', '/getbooklist')
+export const getBookListAjax = p => request('get', '/getbooklist', p)
 
 export const updateBookAjax = p => request('post', '/updatebook', p)
 

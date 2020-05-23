@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 import App from './App';
 import "weui";
 import "../node_modules/weui/dist/style/weui.min.css"

@@ -1,10 +1,10 @@
 import React from "react";
 export default class SignUp extends React.Component {
   state = {
-    username: '123',
-    password: '123',
+    username: '',
+    password: '',
     confirm_pwd: '',
-    email: '123@163.com',
+    email: '',
     tip: ''
   }
   // show tip
@@ -31,7 +31,7 @@ export default class SignUp extends React.Component {
       password: this.state.password,
       email: this.state.email,
     }
-    fetch('http://localhost:5050/signup', {
+    fetch('http://localhost:5050/v1/signup', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'

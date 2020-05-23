@@ -4,7 +4,7 @@ import { addBookAjax, getBookbyIdAjax, updateBookAjax } from '../../service/ajax
 export default class BookAdd extends React.Component {
   componentDidMount() {
     // is edit or not
-    this.isModify()
+    this.isModifyFunc()
   }
   state = {
     isModify: false,
@@ -19,7 +19,7 @@ export default class BookAdd extends React.Component {
     buttonText: 'Add'
   }
   // check is modify
-  isModify = () => {
+  isModifyFunc = () => {
     const params = new URLSearchParams(this.props.location.search);
     const type = params.get('type');
     const id = params.get('id');
@@ -29,12 +29,12 @@ export default class BookAdd extends React.Component {
         id,
         buttonText: 'Update'
       })
-      this.setState({isModify: true})
+      this.setState({ isModify: true })
     } else {
       this.setState({
         buttonText: 'Add'
       })
-      this.setState({isModify: false})
+      this.setState({ isModify: false })
     }
   }
   // detail
@@ -70,7 +70,7 @@ export default class BookAdd extends React.Component {
       img_path: this.state.img_path
     }
     let res
-    if (this.isModify) {
+    if (this.state.isModify) {
       sendData.id = this.state.id;
       res = await updateBookAjax(sendData)
     } else {
@@ -118,7 +118,7 @@ export default class BookAdd extends React.Component {
           <label>Photo:</label>
           <input type="text" name="img_path" value={this.state.img_path} onChange={this.changeEvt}></input>
         </div>
-    <button type="button" onClick={this.submitEvt}>{this.state.buttonText}</button>
+        <button type="button" onClick={this.submitEvt}>{this.state.buttonText}</button>
         <p>{this.state.tip}</p>
       </form>
     )
