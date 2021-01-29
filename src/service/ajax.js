@@ -1,5 +1,7 @@
 import request from '../config/request'
 
+export const signupAjax = p => request('post', '/signup', p)
+
 export const signinAjax = p => request('post', '/signin', p)
 
 export const addBookAjax = p => request('post', '/addbook', p)

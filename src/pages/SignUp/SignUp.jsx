@@ -1,4 +1,5 @@
 import React from "react";
+import { signupAjax } from '../../service/ajax';
 export default class SignUp extends React.Component {
   state = {
     username: '',
@@ -24,29 +25,26 @@ export default class SignUp extends React.Component {
   toSignIn = () => {
     this.props.history.push('/signin')
   }
-  // submit form
-  submitEvt = () => {
+  async doSignup() {
+    if(this.state.password !== this.state.confirm_pwd){
+      this.showTip("Those passwords didn't match. Try again.");
+      return;
+    } 
     const sendData = {
       username: this.state.username,
       password: this.state.password,
       email: this.state.email,
     }
-    fetch('http://localhost:5050/v1/signup', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: JSON.stringify(sendData)
-    })
-      .then(res => res.json())
-      .then(result => {
-        if (result.success) {
-          this.showTip(result.message)
-        } else {
-          this.showTip(result.message)
-        }
-      })
+    let res = await signupAjax(sendData)
+    if (res.success) {
+      sessionStorage.setItem('signin', true)
+      this.props.history.push('/booklist')
+    } else {
+      this.showTip(res.message)
+    }
+  }
+  submitEvt = () => {
+    this.doSignup()
   }
 
   render() {
@@ -62,7 +60,7 @@ export default class SignUp extends React.Component {
         </div>
         <div>
           <label>Confirm Password:</label>
-          <input type="password" name="password" value={this.state.password} onChange={this.changeEvt}></input>
+          <input type="password" name="confirm_pwd" value={this.state.confirm_pwd} onChange={this.changeEvt}></input>
         </div>
         <div>
           <label>E-mail:</label>
