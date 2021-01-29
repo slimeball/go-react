@@ -26,7 +26,7 @@ func GetBookListDAO(page *model.Page) (*model.Page, error) {
 	utils.DB.Table("book").Count(&PageTotal)
 
 	var book []*model.Book
-	err := utils.DB.Table("book").Offset((PageNo - 1) * PageSize).Limit(PageSize).Find(&book).Error
+	err := utils.DB.Table("book").Offset((PageNo - 1) * PageSize).Limit(PageSize).Order("id desc").Find(&book).Error
 	if PageTotal%PageSize == 0 {
 		PageTotalNum = PageTotal / PageSize
 	} else {

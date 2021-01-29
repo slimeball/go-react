@@ -4,6 +4,7 @@ import (
 	"bookstore/dao"
 	"bookstore/model"
 
+	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
 
@@ -26,6 +27,10 @@ func SignIn(c *gin.Context) {
 				"userinfo": result,
 				"success":  true,
 			})
+			session := sessions.Default(c)
+			session.Set("loginuser", 123)
+			session.Save()
+
 		} else {
 			c.JSON(200, gin.H{
 				"code":    "0",
@@ -54,5 +59,18 @@ func SignUp(c *gin.Context) {
 			"message": "sign up success.",
 			"success": true,
 		})
+		// uid, uiderr := uuid.NewUUID()
+		// if uiderr != nil {
+		// 	return
+		// }
+		// fmt.Println(uid)
+		// session := sessions.Default(c)
+		// sess := &model.SessionInfo{
+		// 	SessionId: uid.String(),
+		// 	Username:  registerInfo.Username,
+		// 	UserId:    registerInfo.Id,
+		// }
+		// err := dao.CreateSession(sess)
+		// store := cookie.NewStore([]byte("secret"))
 	}
 }

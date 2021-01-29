@@ -1,3 +1,18 @@
+XSS cross site scripting 跨站腳本
+反射型，存儲型，DOM-based類型
+
+對輸入和url參數進行過濾，對輸入進行編碼。cookie設置http-only
+
+CSRF cross site request forgery 跨站請求偽造
+
+1.盡量使用post
+2.加入驗證碼
+3.驗證referer 記錄請求來源地址
+4.Anti CSRF Token 隨機不可預測
+  在http請求或頭信息添加token，存在服務端 放在session 或 nosql
+5.加入自定義header
+
+
 > skills
 backend：go, gorm, gin, mysql
 frontend: react, redux, weui 
@@ -87,32 +102,3 @@ dao層 data access object
 
 第八天
 登錄session記錄
-
-
-
-
----------------------------------
-* 信息記錄
-
-服務端agent
-後端服務組件開發
-
-技術棧
-kafka  數據解耦
-zookeeper
-ES和Kibana使用
-ercd
-
-> 日志系统
-问题排查，数据分析
-
-- elk方案
-问题：运维成本高，每增加一个日志收藏，都要手动配置，监控缺失，无法准确获取logstash状态，无法做定制化开发及维护
-
-- 
-log agent 日誌收集客戶端，收集服務器的日誌
-lafka 高吞吐量分佈式隊列
-ES - elasticsearch 開源搜索引擎
-hadoop 分佈式計算框架，大量數據進行分部署，小量數據用mysql足夠
-storm 實時計算框架，計算數據流
-
